@@ -1,0 +1,498 @@
+file 1245618 1649801671                                         
+version 3
+run VoIP-0-20220412-00:48:48-211217
+attr configname VoIP
+attr datetime 20220412-00:48:48
+attr datetimef 20220412-004848
+attr experiment VoIP
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network MultiCell
+attr processid 211217
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../../../inet4.3/images:../../../simu5G/images:../../../veins_inet/images:../../../veins/images
+config output-scalar-file results/VoIP--0.sca
+config output-vector-file results/VoIP--0.vec
+config sim-time-limit 10s
+config repeat 1
+config *.ue*.numApps 1
+config *.server.numApps 4
+config **.ue1*.macCellId 1
+config **.ue1*.masterId 1
+config **.ue2*.macCellId 2
+config **.ue2*.masterId 2
+config *.ue*.app[*].typename VoIPReceiver
+config *.ue*.app[0].localPort 3000
+config *.server.app[*].PacketSize 40
+config *.server.app[0].destAddress "\"ue11\""
+config *.server.app[1].destAddress "\"ue12\""
+config *.server.app[2].destAddress "\"ue21\""
+config *.server.app[3].destAddress "\"ue22\""
+config *.server.app[*].destPort 3000
+config *.server.app[*].localPort 3088+ancestorIndex(0)
+config *.server.app[*].typename VoIPSender
+config *.server.app[*].startTime uniform(0s,0.02s)
+config image-path ../../images
+config output-scalar-file-append false
+config sim-time-limit 20s
+config network MultiCell
+config **.routingRecorder.enabled false
+config **.result-recording-modes all,-vector
+config seed-set 0
+config **.cellularNic.channelModel[0].downlink_interference true
+config **.mobility.constraintAreaMinZ 0m
+config **.mobility.constraintAreaMaxZ 0m
+config **.mobility.initFromDisplayString true
+config **.numBands 6
+config **.ueTxPower 26
+config **.eNodeBTxPower 40
+config *.configurator.config "xmldoc(\"./demo.xml\")"
+
+vector 0 MultiCell.eNB1.cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 1 MultiCell.eNB2.cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 2 MultiCell.server.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 3 MultiCell.server.ppp[0].ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, vector(packetBytes)"
+vector 4 MultiCell.server.ppp[0].ppp.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 5 MultiCell.server.ppp[0].ppp.queue packetPulled:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pulled, vector(packetBytes)"
+vector 6 MultiCell.server.ppp[0].ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 7 MultiCell.router.ppp[0].ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 8 MultiCell.router.ppp[0].ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 9 MultiCell.router.ppp[1].ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, vector(packetBytes)"
+vector 10 MultiCell.router.ppp[1].ppp.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 11 MultiCell.router.ppp[1].ppp.queue packetPulled:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pulled, vector(packetBytes)"
+vector 12 MultiCell.router.ppp[1].ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 13 MultiCell.pgw.pppIf.ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 14 MultiCell.pgw.pppIf.ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 15 MultiCell.pgw.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 16 MultiCell.pgw.ppp[0].ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, vector(packetBytes)"
+vector 17 MultiCell.pgw.ppp[0].ppp.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 18 MultiCell.pgw.ppp[0].ppp.queue packetPulled:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pulled, vector(packetBytes)"
+vector 19 MultiCell.pgw.ppp[0].ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 20 MultiCell.eNB1.pppIf.ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 21 MultiCell.eNB1.pppIf.ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 22 MultiCell.eNB1.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceived
+attr title "packets received, vector(packetBytes)"
+vector 23 MultiCell.eNB1.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed up, vector(count)"
+vector 24 MultiCell.eNB1.cellularNic.pdcpRrc receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+vector 25 MultiCell.eNB1.cellularNic.pdcpRrc sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+vector 26 MultiCell.eNB1.cellularNic.rlc.um receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+vector 27 MultiCell.eNB1.cellularNic.mac receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+vector 28 MultiCell.eNB1.cellularNic.mac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 29 MultiCell.eNB1.cellularNic.rlc.um sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+vector 30 MultiCell.eNB1.cellularNic.mac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+vector 31 MultiCell.ue12.cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 32 MultiCell.pgw.ppp[1].ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, vector(packetBytes)"
+vector 33 MultiCell.pgw.ppp[1].ppp.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 34 MultiCell.pgw.ppp[1].ppp.queue packetPulled:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pulled, vector(packetBytes)"
+vector 35 MultiCell.pgw.ppp[1].ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 36 MultiCell.eNB2.pppIf.ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 37 MultiCell.eNB2.pppIf.ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 38 MultiCell.eNB2.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceived
+attr title "packets received, vector(packetBytes)"
+vector 39 MultiCell.eNB2.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed up, vector(count)"
+vector 40 MultiCell.eNB2.cellularNic.pdcpRrc receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+vector 41 MultiCell.eNB2.cellularNic.pdcpRrc sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+vector 42 MultiCell.eNB2.cellularNic.rlc.um receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+vector 43 MultiCell.eNB2.cellularNic.mac receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+vector 44 MultiCell.eNB2.cellularNic.mac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 45 MultiCell.eNB2.cellularNic.rlc.um sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+vector 46 MultiCell.eNB2.cellularNic.mac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+vector 47 MultiCell.ue21.cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 48 MultiCell.ue12.cellularNic.mac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+vector 49 MultiCell.ue12.cellularNic.mac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 50 MultiCell.ue12.cellularNic.rlc.um receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 51 MultiCell.ue12.cellularNic.rlc.um sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 52 MultiCell.ue12.cellularNic.pdcpRrc receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 53 MultiCell.ue12.cellularNic.pdcpRrc sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 54 MultiCell.ue12.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceived
+attr title "packets received, vector(packetBytes)"
+vector 55 MultiCell.ue12.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed up, vector(count)"
+vector 56 MultiCell.ue21.cellularNic.mac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+vector 57 MultiCell.ue21.cellularNic.mac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 58 MultiCell.ue21.cellularNic.rlc.um receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 59 MultiCell.ue21.cellularNic.rlc.um sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 60 MultiCell.ue21.cellularNic.pdcpRrc receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 61 MultiCell.ue21.cellularNic.pdcpRrc sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 62 MultiCell.ue21.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceived
+attr title "packets received, vector(packetBytes)"
+vector 63 MultiCell.ue21.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed up, vector(count)"
+vector 64 MultiCell.ue11.cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 65 MultiCell.ue22.cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 66 MultiCell.ue11.cellularNic.mac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+vector 67 MultiCell.ue11.cellularNic.mac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 68 MultiCell.ue11.cellularNic.rlc.um receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 69 MultiCell.ue11.cellularNic.rlc.um sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 70 MultiCell.ue11.cellularNic.pdcpRrc receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 71 MultiCell.ue11.cellularNic.pdcpRrc sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 72 MultiCell.ue11.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceived
+attr title "packets received, vector(packetBytes)"
+vector 73 MultiCell.ue11.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed up, vector(count)"
+vector 74 MultiCell.ue22.cellularNic.mac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+vector 75 MultiCell.ue22.cellularNic.mac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 76 MultiCell.ue22.cellularNic.rlc.um receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 77 MultiCell.ue22.cellularNic.rlc.um sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 78 MultiCell.ue22.cellularNic.pdcpRrc receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 79 MultiCell.ue22.cellularNic.pdcpRrc sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 80 MultiCell.ue22.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceived
+attr title "packets received, vector(packetBytes)"
+vector 81 MultiCell.ue22.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed up, vector(count)"
+0	15355 302 41 957 0.002 0.05 22 1 1 22 22
+1	15657 302 45 961 0.002 0.05 22 1 1 22 22
+2	15959 234 98 917 0.007138078413 0.04952167965 10 48 48 480 23040
+3	16193 235 100 919 0.007138078413 0.04952167965 10 68 68 680 46240
+4	16428 235 100 919 0.007138078413 0.04952167965 10 68 68 680 46240
+5	16663 235 100 919 0.007138078413 0.04952167965 10 68 68 680 46240
+6	16898 235 100 919 0.007138078413 0.04952167965 10 75 75 750 56250
+7	17133 235 102 921 0.007138188413 0.04952178965 10 75 75 750 56250
+8	17368 235 102 921 0.007138188413 0.04952178965 10 68 68 680 46240
+9	17603 235 104 923 0.007138188413 0.04952178965 10 68 68 680 46240
+10	17838 245 104 923 0.007138188413 0.04952178965 10 68 68 680 46240
+11	18083 245 104 923 0.007138188413 0.04952178965 10 68 68 680 46240
+12	18328 245 104 923 0.007138188413 0.04952178965 10 75 75 750 56250
+13	18573 245 106 925 0.007138298413 0.04952189965 10 75 75 750 56250
+14	18818 245 106 925 0.007138298413 0.04952189965 10 68 68 680 46240
+15	19063 245 109 928 0.007138298413 0.04952189965 10 84 84 840 70560
+16	19308 130 111 874 0.007138298413 0.047138298413 5 104 104 520 54080
+17	19438 130 111 874 0.007138298413 0.047138298413 5 104 104 520 54080
+18	19568 130 111 874 0.007138298413 0.047138298413 5 104 104 520 54080
+19	19698 130 111 874 0.007138298413 0.047138298413 5 111 111 555 61605
+20	19828 130 113 876 0.007138437213 0.047138437213 5 111 111 555 61605
+21	19958 130 113 876 0.007138437213 0.047138437213 5 104 104 520 54080
+22	20088 125 115 878 0.007138437213 0.047138437213 5 84 84 420 35280
+23	20213 120 115 878 0.007138437213 0.047138437213 5 1 5 15 55
+24	20333 125 118 881 0.007138437213 0.047138437213 5 68 68 340 23120
+25	20458 125 118 881 0.007138437213 0.047138437213 5 69 69 345 23805
+26	20583 125 119 882 0.007138437213 0.047138437213 5 69 69 345 23805
+27	20708 205 121 893 0.007138437213 0.048 10 71 71 710 50410
+28	20913 75 122 889 0.008 0.048 5 1 1 5 5
+29	20988 80 124 891 0.008 0.048 5 71 71 355 25205
+30	21068 80 132 899 0.008 0.048 5 73 73 365 26645
+31	21148 48 152 915 0.009 0.049 3 73 73 219 15987
+32	21196 125 168 930 0.00952189965 0.04952189965 5 104 104 520 54080
+33	21321 125 168 930 0.00952189965 0.04952189965 5 104 104 520 54080
+34	21446 125 168 930 0.00952189965 0.04952189965 5 104 104 520 54080
+35	21571 125 168 930 0.00952189965 0.04952189965 5 111 111 555 61605
+36	21696 125 170 932 0.00952203845 0.04952203845 5 111 111 555 61605
+37	21821 125 170 932 0.00952203845 0.04952203845 5 104 104 520 54080
+38	21946 120 172 934 0.00952203845 0.04952203845 5 84 84 420 35280
+39	22066 115 172 934 0.00952203845 0.04952203845 5 1 5 15 55
+40	22181 120 175 937 0.00952203845 0.04952203845 5 68 68 340 23120
+41	22301 120 175 937 0.00952203845 0.04952203845 5 69 69 345 23805
+42	22421 120 176 938 0.00952203845 0.04952203845 5 69 69 345 23805
+43	22541 197 178 946 0.00952203845 0.05 10 71 71 710 50410
+44	22738 72 180 942 0.01 0.05 5 1 1 5 5
+45	22810 77 182 944 0.01 0.05 5 71 71 355 25205
+46	22887 77 190 952 0.01 0.05 5 73 73 365 26645
+47	22964 48 201 971 0.011 0.051 3 73 73 219 15987
+48	23012 45 209 975 0.012 0.052 3 1 1 3 3
+49	23057 48 209 975 0.012 0.052 3 71 71 213 15123
+50	23105 32 212 594 0.012 0.032 2 71 71 142 10082
+51	23137 32 212 594 0.012 0.032 2 69 69 138 9522
+52	23169 32 213 595 0.012 0.032 2 69 69 138 9522
+53	23201 32 213 595 0.012 0.032 2 68 68 136 9248
+54	23233 32 216 598 0.012 0.032 2 48 48 96 4608
+55	23265 30 216 598 0.012 0.032 2 1 2 3 5
+56	23295 30 240 626 0.014 0.034 2 1 1 2 2
+57	23325 32 240 626 0.014 0.034 2 71 71 142 10082
+58	23357 32 243 629 0.014 0.034 2 71 71 142 10082
+59	23389 32 243 629 0.014 0.034 2 69 69 138 9522
+60	23421 32 244 630 0.014 0.034 2 69 69 138 9522
+61	23453 32 244 630 0.014 0.034 2 68 68 136 9248
+62	23485 32 247 633 0.014 0.034 2 48 48 96 4608
+63	23517 30 247 633 0.014 0.034 2 1 2 3 5
+64	23547 32 330 719 0.018 0.038 2 73 73 146 10658
+65	23579 30 391 767 0.02 0.04 2 73 73 146 10658
+66	23609 30 394 770 0.021 0.041 2 1 1 2 2
+67	23639 32 394 770 0.021 0.041 2 71 71 142 10082
+68	23671 32 397 773 0.021 0.041 2 71 71 142 10082
+69	23703 32 397 773 0.021 0.041 2 69 69 138 9522
+70	23735 32 398 774 0.021 0.041 2 69 69 138 9522
+71	23767 32 398 774 0.021 0.041 2 68 68 136 9248
+72	23799 32 401 777 0.021 0.041 2 48 48 96 4608
+73	23831 30 401 777 0.021 0.041 2 1 2 3 5
+74	23861 30 423 807 0.023 0.043 2 1 1 2 2
+75	23891 32 423 807 0.023 0.043 2 71 71 142 10082
+76	23923 32 426 810 0.023 0.043 2 71 71 142 10082
+77	23955 32 426 810 0.023 0.043 2 69 69 138 9522
+78	23987 32 427 811 0.023 0.043 2 69 69 138 9522
+79	24019 32 427 811 0.023 0.043 2 68 68 136 9248
+80	24051 32 430 814 0.023 0.043 2 48 48 96 4608
+81	24083 30 430 814 0.023 0.043 2 1 2 3 5
+0	24113 63203 997 156426 0.053 9.998 3923 1 1 3923 3923
+1	87316 63174 1031 156430 0.055 9.998 3910 1 1 3910 3910
+2	150490 30373 1049 156374 0.056230369485 9.996731059481 1170 48 48 56160 2695680
+3	180863 30373 1051 156376 0.056230369485 9.996731059481 1170 68 68 79560 5410080
+4	211236 30373 1051 156376 0.056230369485 9.996731059481 1170 68 68 79560 5410080
+5	241609 30373 1051 156376 0.056230369485 9.996731059481 1170 68 68 79560 5410080
+6	271982 30373 1051 156376 0.056230369485 9.996731059481 1170 75 75 87750 6581250
+7	302355 30373 1053 156378 0.056230479485 9.996731169481 1170 75 75 87750 6581250
+8	332728 30373 1053 156378 0.056230479485 9.996731169481 1170 68 68 79560 5410080
+9	363101 30373 1055 156380 0.056230479485 9.996731169481 1170 68 68 79560 5410080
+10	393474 31543 1055 156380 0.056230479485 9.996731169481 1170 68 68 79560 5410080
+11	425017 31543 1055 156380 0.056230479485 9.996731169481 1170 68 68 79560 5410080
+12	456560 31543 1055 156380 0.056230479485 9.996731169481 1170 75 75 87750 6581250
+13	488103 31543 1057 156382 0.056230589485 9.996731279481 1170 75 75 87750 6581250
+14	519646 31543 1057 156382 0.056230589485 9.996731279481 1170 68 68 79560 5410080
+15	551189 31543 1060 156385 0.056230589485 9.996731279481 1170 84 84 98280 8255520
+16	582732 16867 1062 155450 0.056230589485 9.924855972342 602 104 104 62608 6511232
+17	599599 16867 1062 155450 0.056230589485 9.924855972342 602 104 104 62608 6511232
+18	616466 16867 1062 155450 0.056230589485 9.924855972342 602 104 104 62608 6511232
+19	633333 16867 1062 155450 0.056230589485 9.924855972342 602 111 111 66822 7417242
+20	650200 16867 1064 155452 0.056230728285 9.924856111142 602 111 111 66822 7417242
+21	667067 16867 1064 155452 0.056230728285 9.924856111142 602 104 104 62608 6511232
+22	683934 16265 1066 155454 0.056230728285 9.924856111142 602 84 84 50568 4247712
+23	700199 16769 1066 155454 0.056230728285 9.924856111142 602 6 607 184513 74733785
+24	716968 16265 1069 155457 0.056230728285 9.924856111142 602 68 68 40936 2783648
+25	733233 16265 1069 155457 0.056230728285 9.924856111142 602 69 69 41538 2866122
+26	749498 16265 1070 155458 0.056230728285 9.924856111142 602 69 69 41538 2866122
+27	765763 27158 1072 155469 0.056230728285 9.925 1204 71 71 85484 6069364
+28	792921 10291 1073 155465 0.057 9.925 602 1 1 602 602
+29	803212 10893 1075 155467 0.057 9.925 602 71 71 42742 3034682
+30	814105 10965 1083 155475 0.057 9.925 606 73 73 44238 3229374
+31	825070 5817 1299 155495 0.069 9.926 321 73 73 23433 1710609
+32	830887 15846 1110 156387 0.05867701981 9.996731279481 568 104 104 59072 6143488
+33	846733 15846 1110 156387 0.05867701981 9.996731279481 568 104 104 59072 6143488
+34	862579 15846 1110 156387 0.05867701981 9.996731279481 568 104 104 59072 6143488
+35	878425 15846 1110 156387 0.05867701981 9.996731279481 568 111 111 63048 6998328
+36	894271 15846 1112 156389 0.05867715861 9.996731418281 568 111 111 63048 6998328
+37	910117 15846 1112 156389 0.05867715861 9.996731418281 568 104 104 59072 6143488
+38	925963 15278 1114 156391 0.05867715861 9.996731418281 568 84 84 47712 4007808
+39	941241 15748 1114 156391 0.05867715861 9.996731418281 568 6 573 164436 62875044
+40	956989 15278 1117 156394 0.05867715861 9.996731418281 568 68 68 38624 2626432
+41	972267 15278 1117 156394 0.05867715861 9.996731418281 568 69 69 39192 2704248
+42	987545 15278 1118 156395 0.05867715861 9.996731418281 568 69 69 39192 2704248
+43	1002823 25660 1120 156407 0.05867715861 9.997 1136 71 71 80656 5726576
+44	1028483 9813 1122 156403 0.059 9.997 568 1 1 568 568
+45	1038296 10381 1124 156405 0.059 9.997 568 71 71 40328 2863288
+46	1048677 10850 1132 156413 0.059 9.997 594 73 73 43362 3165426
+47	1059527 4652 1347 129366 0.071 8.131 254 73 73 18542 1353566
+48	1064179 5497 1355 155515 0.072 9.929 321 1 1 321 321
+49	1069676 5818 1355 155515 0.072 9.929 321 71 71 22791 1618161
+50	1075494 5834 978 155518 0.052 9.929 322 71 71 22862 1623202
+51	1081328 5834 978 155518 0.052 9.929 322 69 69 22218 1533042
+52	1087162 5834 979 155519 0.052 9.929 322 69 69 22218 1533042
+53	1092996 5834 979 155519 0.052 9.929 322 68 68 21896 1488928
+54	1098830 5834 982 155522 0.052 9.929 322 48 48 15456 741888
+55	1104664 6052 982 155522 0.052 9.929 322 3 324 52647 11389945
+56	1110716 4414 1006 129397 0.054 8.134 255 1 1 255 255
+57	1115130 4201 1006 129397 0.054 8.134 229 71 71 16259 1154389
+58	1119331 4201 1009 129400 0.054 8.134 229 71 71 16259 1154389
+59	1123532 4201 1009 129400 0.054 8.134 229 69 69 15801 1090269
+60	1127733 4201 1010 129401 0.054 8.134 229 69 69 15801 1090269
+61	1131934 4201 1010 129401 0.054 8.134 229 68 68 15572 1058896
+62	1136135 4201 1013 129404 0.054 8.134 229 48 48 10992 527616
+63	1140336 4326 1013 129404 0.054 8.134 229 3 231 26793 4135511
+64	1144662 5148 1095 136473 0.058 8.608 285 73 73 20805 1518765
+65	1149810 5931 1147 156432 0.06 9.998 340 73 73 24820 1811860
+66	1155741 4850 1154 136500 0.061 8.611 285 1 1 285 285
+67	1160591 5063 1154 136500 0.061 8.611 281 71 71 19951 1416521
+68	1165654 5063 1157 136503 0.061 8.611 281 71 71 19951 1416521
+69	1170717 5063 1157 136503 0.061 8.611 281 69 69 19389 1337841
+70	1175780 5063 1158 136504 0.061 8.611 281 69 69 19389 1337841
+71	1180843 5063 1158 136504 0.061 8.611 281 68 68 19108 1299344
+72	1185906 5063 1161 136507 0.061 8.611 281 48 48 13488 647424
+73	1190969 5240 1161 136507 0.061 8.611 281 3 283 40183 7595149
+74	1196209 5850 1191 156204 0.063 9.981 339 1 1 339 339
+75	1202059 6189 1191 156204 0.063 9.981 339 71 71 24069 1708899
+76	1208248 6189 1194 156207 0.063 9.981 339 71 71 24069 1708899
+77	1214437 6189 1194 156207 0.063 9.981 339 69 69 23391 1613979
+78	1220626 6189 1195 156208 0.063 9.981 339 69 69 23391 1613979
+79	1226815 6189 1195 156208 0.063 9.981 339 68 68 23052 1567536
+80	1233004 6189 1198 156211 0.063 9.981 339 48 48 16272 781056
+81	1239193 6424 1198 156211 0.063 9.981 339 3 341 58308 13275466
+
