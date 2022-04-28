@@ -1,0 +1,979 @@
+file 3955169 1651098998                                         
+version 3
+run VoIP-0-20220428-00:36:34-269061
+attr configname VoIP
+attr datetime 20220428-00:36:34
+attr datetimef 20220428-003634
+attr experiment VoIP
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network MultiCell
+attr processid 269061
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../../../inet4.3/images:../../../simu5G/images
+config output-scalar-file results/VoIP--0.sca
+config output-vector-file results/VoIP--0.vec
+config sim-time-limit 10s
+config repeat 1
+config *.ue*.numApps 1
+config *.server.numApps 4
+config **.ue1*.macCellId 1
+config **.ue1*.masterId 1
+config **.ue2*.macCellId 2
+config **.ue2*.masterId 2
+config *.ue*.app[*].typename VoIPReceiver
+config *.ue*.app[0].localPort 3000
+config *.server.app[*].PacketSize 40
+config *.server.app[0].destAddress "\"ue11\""
+config *.server.app[1].destAddress "\"ue12\""
+config *.server.app[2].destAddress "\"ue21\""
+config *.server.app[3].destAddress "\"ue22\""
+config *.server.app[*].destPort 3000
+config *.server.app[*].localPort 3088+ancestorIndex(0)
+config *.server.app[*].typename VoIPSender
+config *.server.app[*].startTime uniform(0s,0.02s)
+config image-path ../../images
+config output-scalar-file-append false
+config sim-time-limit 20s
+config network MultiCell
+config **.routingRecorder.enabled false
+config **.scalar-recording true
+config **.vector-recording true
+config seed-set 0
+config **.cellularNic.channelModel[0].downlink_interference true
+config **.mobility.constraintAreaMinZ 0m
+config **.mobility.constraintAreaMaxZ 0m
+config **.mobility.initFromDisplayString true
+config **.numBands 6
+config **.ueTxPower 26
+config **.eNodeBTxPower 40
+config *.configurator.config "xmldoc(\"./demo.xml\")"
+
+vector 0 MultiCell.server.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr source transmissionStateChanged
+attr title "tx state, vector"
+vector 1 MultiCell.router.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr source transmissionStateChanged
+attr title "tx state, vector"
+vector 2 MultiCell.router.ppp[1].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr source transmissionStateChanged
+attr title "tx state, vector"
+vector 3 MultiCell.pgw.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr source transmissionStateChanged
+attr title "tx state, vector"
+vector 4 MultiCell.pgw.ppp[1].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr source transmissionStateChanged
+attr title "tx state, vector"
+vector 5 MultiCell.pgw.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr source transmissionStateChanged
+attr title "tx state, vector"
+vector 6 MultiCell.eNB1.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr source transmissionStateChanged
+attr title "tx state, vector"
+vector 7 MultiCell.eNB1.x2ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr source transmissionStateChanged
+attr title "tx state, vector"
+vector 8 MultiCell.eNB1.pppMEHostIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr source transmissionStateChanged
+attr title "tx state, vector"
+vector 9 MultiCell.eNB2.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr source transmissionStateChanged
+attr title "tx state, vector"
+vector 10 MultiCell.eNB2.x2ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr source transmissionStateChanged
+attr title "tx state, vector"
+vector 11 MultiCell.eNB2.pppMEHostIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr source transmissionStateChanged
+attr title "tx state, vector"
+vector 12 MultiCell.ue11.cellularNic.phy servingCell:vector ETV
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE, vector"
+attr unit ""
+vector 13 MultiCell.ue12.cellularNic.phy servingCell:vector ETV
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE, vector"
+attr unit ""
+vector 14 MultiCell.ue21.cellularNic.phy servingCell:vector ETV
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE, vector"
+attr unit ""
+vector 15 MultiCell.ue22.cellularNic.phy servingCell:vector ETV
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE, vector"
+attr unit ""
+vector 16 MultiCell.eNB1.cellularNic.mac avgServedBlocksUl:vector ETV
+attr source avgServedBlocksUl
+attr title "LTE Avg Served Blocks Ul, vector"
+attr unit blocks
+vector 17 MultiCell.eNB1.cellularNic.mac avgServedBlocksDl:vector ETV
+attr source avgServedBlocksDl
+attr title "LTE Avg Served Blocks Dl, vector"
+attr unit blocks
+vector 18 MultiCell.eNB2.cellularNic.mac avgServedBlocksUl:vector ETV
+attr source avgServedBlocksUl
+attr title "LTE Avg Served Blocks Ul, vector"
+attr unit blocks
+vector 19 MultiCell.eNB2.cellularNic.mac avgServedBlocksDl:vector ETV
+attr source avgServedBlocksDl
+attr title "LTE Avg Served Blocks Dl, vector"
+attr unit blocks
+vector 20 MultiCell.ue11.cellularNic.channelModel[0] measuredSinrUl:vector ETV
+attr source measuredSinrUl
+attr title "SINR measured at feedback computation, UL, vector"
+attr unit dB
+vector 21 MultiCell.ue11.cellularNic.channelModel[0] measuredSinrDl:vector ETV
+attr source measuredSinrDl
+attr title "SINR measured at feedback computation, DL, vector"
+attr unit dB
+vector 22 MultiCell.eNB1.cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 23 MultiCell.ue12.cellularNic.channelModel[0] measuredSinrUl:vector ETV
+attr source measuredSinrUl
+attr title "SINR measured at feedback computation, UL, vector"
+attr unit dB
+vector 24 MultiCell.ue12.cellularNic.channelModel[0] measuredSinrDl:vector ETV
+attr source measuredSinrDl
+attr title "SINR measured at feedback computation, DL, vector"
+attr unit dB
+vector 25 MultiCell.ue21.cellularNic.channelModel[0] measuredSinrUl:vector ETV
+attr source measuredSinrUl
+attr title "SINR measured at feedback computation, UL, vector"
+attr unit dB
+vector 26 MultiCell.ue21.cellularNic.channelModel[0] measuredSinrDl:vector ETV
+attr source measuredSinrDl
+attr title "SINR measured at feedback computation, DL, vector"
+attr unit dB
+vector 27 MultiCell.eNB2.cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 28 MultiCell.ue22.cellularNic.channelModel[0] measuredSinrUl:vector ETV
+attr source measuredSinrUl
+attr title "SINR measured at feedback computation, UL, vector"
+attr unit dB
+vector 29 MultiCell.ue22.cellularNic.channelModel[0] measuredSinrDl:vector ETV
+attr source measuredSinrDl
+attr title "SINR measured at feedback computation, DL, vector"
+attr unit dB
+vector 30 MultiCell.server.app[1] voIPGeneratedThroughput:vector ETV
+attr source voIPGeneratedThroughput
+attr title "Throughput generated by the application, vector"
+attr unit Bps
+vector 31 MultiCell.server.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 32 MultiCell.server.ppp[0].ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, vector(packetBytes)"
+vector 33 MultiCell.server.ppp[0].ppp.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 34 MultiCell.server.ppp[0].ppp.queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr source "warmup(count(packetPushed) - count(packetPulled) - count(packetRemoved) - count(packetDropped))"
+attr title "queue length, vector"
+attr type int
+vector 35 MultiCell.server.ppp[0].ppp.queue packetPulled:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pulled, vector(packetBytes)"
+vector 36 MultiCell.server.ppp[0].ppp.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPulled)
+attr title "queueing times, vector"
+attr unit s
+vector 37 MultiCell.server.ppp[0].ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 38 MultiCell.router.ppp[0].ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 39 MultiCell.router.ppp[0].ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 40 MultiCell.router.ppp[1].ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, vector(packetBytes)"
+vector 41 MultiCell.router.ppp[1].ppp.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 42 MultiCell.router.ppp[1].ppp.queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr source "warmup(count(packetPushed) - count(packetPulled) - count(packetRemoved) - count(packetDropped))"
+attr title "queue length, vector"
+attr type int
+vector 43 MultiCell.router.ppp[1].ppp.queue packetPulled:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pulled, vector(packetBytes)"
+vector 44 MultiCell.router.ppp[1].ppp.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPulled)
+attr title "queueing times, vector"
+attr unit s
+vector 45 MultiCell.router.ppp[1].ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 46 MultiCell.pgw.pppIf.ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 47 MultiCell.pgw.pppIf.ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 48 MultiCell.pgw.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 49 MultiCell.pgw.ppp[1].ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, vector(packetBytes)"
+vector 50 MultiCell.pgw.ppp[1].ppp.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 51 MultiCell.pgw.ppp[1].ppp.queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr source "warmup(count(packetPushed) - count(packetPulled) - count(packetRemoved) - count(packetDropped))"
+attr title "queue length, vector"
+attr type int
+vector 52 MultiCell.pgw.ppp[1].ppp.queue packetPulled:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pulled, vector(packetBytes)"
+vector 53 MultiCell.pgw.ppp[1].ppp.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPulled)
+attr title "queueing times, vector"
+attr unit s
+vector 54 MultiCell.pgw.ppp[1].ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 55 MultiCell.eNB1.pppIf.ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 56 MultiCell.eNB1.pppIf.ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 57 MultiCell.eNB1.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceived
+attr title "packets received, vector(packetBytes)"
+vector 58 MultiCell.eNB1.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed up, vector(count)"
+vector 59 MultiCell.eNB1.cellularNic.pdcpRrc receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+vector 60 MultiCell.eNB1.cellularNic.pdcpRrc sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+vector 61 MultiCell.eNB1.cellularNic.rlc.um receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+vector 62 MultiCell.eNB1.cellularNic.mac receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+vector 63 MultiCell.eNB1.cellularNic.mac measuredItbs:vector ETV
+attr source measuredItbs
+attr title "TBS index, vector"
+attr unit ""
+vector 64 MultiCell.eNB1.cellularNic.mac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 65 MultiCell.eNB1.cellularNic.rlc.um rlcPacketLossDl:vector ETV
+attr source rlcPacketLossDl
+attr title "rlc Packet Loss, vector"
+attr unit ""
+vector 66 MultiCell.eNB1.cellularNic.rlc.um sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+vector 67 MultiCell.eNB1.cellularNic.mac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+vector 68 MultiCell.ue12.cellularNic.phy averageCqiDl:vector ETV
+attr source averageCqiDl
+attr title "Average Cqi reported in DL, vector"
+attr unit cqi
+vector 69 MultiCell.ue12.cellularNic.channelModel[0] distance:vector ETV
+attr source distance
+attr title "distance between UE and serving base station, vector"
+attr unit meters
+vector 70 MultiCell.ue12.cellularNic.channelModel[0] rcvdSinrDl:vector ETV
+attr source rcvdSinrDl
+attr title "SINR measured at packet reception, DL, vector"
+attr unit dB
+vector 71 MultiCell.ue12.cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 72 MultiCell.server.app[2] voIPGeneratedThroughput:vector ETV
+attr source voIPGeneratedThroughput
+attr title "Throughput generated by the application, vector"
+attr unit Bps
+vector 73 MultiCell.pgw.ppp[0].ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, vector(packetBytes)"
+vector 74 MultiCell.pgw.ppp[0].ppp.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 75 MultiCell.pgw.ppp[0].ppp.queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr source "warmup(count(packetPushed) - count(packetPulled) - count(packetRemoved) - count(packetDropped))"
+attr title "queue length, vector"
+attr type int
+vector 76 MultiCell.pgw.ppp[0].ppp.queue packetPulled:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pulled, vector(packetBytes)"
+vector 77 MultiCell.pgw.ppp[0].ppp.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPulled)
+attr title "queueing times, vector"
+attr unit s
+vector 78 MultiCell.pgw.ppp[0].ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 79 MultiCell.eNB2.pppIf.ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 80 MultiCell.eNB2.pppIf.ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 81 MultiCell.eNB2.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceived
+attr title "packets received, vector(packetBytes)"
+vector 82 MultiCell.eNB2.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed up, vector(count)"
+vector 83 MultiCell.eNB2.cellularNic.pdcpRrc receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+vector 84 MultiCell.eNB2.cellularNic.pdcpRrc sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+vector 85 MultiCell.eNB2.cellularNic.rlc.um receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+vector 86 MultiCell.eNB2.cellularNic.mac receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+vector 87 MultiCell.eNB2.cellularNic.mac measuredItbs:vector ETV
+attr source measuredItbs
+attr title "TBS index, vector"
+attr unit ""
+vector 88 MultiCell.eNB2.cellularNic.mac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 89 MultiCell.eNB2.cellularNic.rlc.um rlcPacketLossDl:vector ETV
+attr source rlcPacketLossDl
+attr title "rlc Packet Loss, vector"
+attr unit ""
+vector 90 MultiCell.eNB2.cellularNic.rlc.um sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+vector 91 MultiCell.eNB2.cellularNic.mac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+vector 92 MultiCell.ue21.cellularNic.phy averageCqiDl:vector ETV
+attr source averageCqiDl
+attr title "Average Cqi reported in DL, vector"
+attr unit cqi
+vector 93 MultiCell.ue21.cellularNic.channelModel[0] distance:vector ETV
+attr source distance
+attr title "distance between UE and serving base station, vector"
+attr unit meters
+vector 94 MultiCell.ue21.cellularNic.channelModel[0] rcvdSinrDl:vector ETV
+attr source rcvdSinrDl
+attr title "SINR measured at packet reception, DL, vector"
+attr unit dB
+vector 95 MultiCell.ue21.cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 96 MultiCell.ue12.cellularNic.mac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+vector 97 MultiCell.eNB1.cellularNic.mac macDelayDl:vector ETV
+attr source macDelayDl
+attr title "Delay at the MAC layer UL, vector"
+attr unit s
+vector 98 MultiCell.ue12.cellularNic.mac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 99 MultiCell.ue12.cellularNic.rlc.um receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 100 MultiCell.ue12.cellularNic.rlc.um rlcPduThroughputDl:vector ETV
+attr source rlcPduThroughputDl
+attr title "Throughput at the rlc layer DL, vector"
+attr unit Bps
+vector 101 MultiCell.ue12.cellularNic.rlc.um rlcPduDelayDl:vector ETV
+attr source rlcPduDelayDl
+attr title "Delay at the rlc layer UL, vector"
+attr unit s
+vector 102 MultiCell.ue12.cellularNic.rlc.um rlcThroughputDl:vector ETV
+attr source rlcThroughputDl
+attr title "Throughput at the rlc layer DL, vector"
+attr unit Bps
+vector 103 MultiCell.ue12.cellularNic.rlc.um rlcPacketLossDl:vector ETV
+attr source rlcPacketLossDl
+attr title "rlc Packet Loss, vector"
+attr unit ""
+vector 104 MultiCell.ue12.cellularNic.rlc.um rlcPacketLossTotal:vector ETV
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss, vector"
+attr unit ""
+vector 105 MultiCell.ue12.cellularNic.rlc.um rlcDelayDl:vector ETV
+attr source rlcDelayDl
+attr title "Delay at the rlc layer DL, vector"
+attr unit s
+vector 106 MultiCell.ue12.cellularNic.rlc.um sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 107 MultiCell.ue12.cellularNic.rlc.um rlcPduPacketLossDl:vector ETV
+attr source rlcPduPacketLossDl
+attr title "rlc Packet Loss, vector"
+attr unit ""
+vector 108 MultiCell.ue12.cellularNic.pdcpRrc receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 109 MultiCell.ue12.cellularNic.pdcpRrc sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 110 MultiCell.ue12.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceived
+attr title "packets received, vector(packetBytes)"
+vector 111 MultiCell.ue12.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed up, vector(count)"
+vector 112 MultiCell.ue12.app[0] voIPReceivedThroughput:vector ETV
+attr source voIPReceivedThroughput
+attr title "Throughput received at the application level, vector"
+attr unit Bps
+vector 113 MultiCell.ue12.cellularNic.mac harqErrorRate_1st_Dl:vector ETV
+attr source harqErrorRate_1st_Dl
+attr title "Harq Error Rate Dl, vector"
+attr unit ""
+vector 114 MultiCell.ue12.cellularNic.mac harqErrorRateDl:vector ETV
+attr source harqErrorRateDl
+attr title "Harq Error Rate Dl, vector"
+attr unit ""
+vector 115 MultiCell.ue12.cellularNic.mac harqTxAttemptsDl:vector ETV
+attr source harqTxAttemptsDl
+attr title "Harq Tx Attempts Dl, vector"
+attr unit ""
+vector 116 MultiCell.ue21.cellularNic.mac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+vector 117 MultiCell.eNB2.cellularNic.mac macDelayDl:vector ETV
+attr source macDelayDl
+attr title "Delay at the MAC layer UL, vector"
+attr unit s
+vector 118 MultiCell.ue21.cellularNic.mac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 119 MultiCell.ue21.cellularNic.rlc.um receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 120 MultiCell.ue21.cellularNic.rlc.um rlcPduThroughputDl:vector ETV
+attr source rlcPduThroughputDl
+attr title "Throughput at the rlc layer DL, vector"
+attr unit Bps
+vector 121 MultiCell.ue21.cellularNic.rlc.um rlcPduDelayDl:vector ETV
+attr source rlcPduDelayDl
+attr title "Delay at the rlc layer UL, vector"
+attr unit s
+vector 122 MultiCell.ue21.cellularNic.rlc.um rlcThroughputDl:vector ETV
+attr source rlcThroughputDl
+attr title "Throughput at the rlc layer DL, vector"
+attr unit Bps
+vector 123 MultiCell.ue21.cellularNic.rlc.um rlcPacketLossDl:vector ETV
+attr source rlcPacketLossDl
+attr title "rlc Packet Loss, vector"
+attr unit ""
+vector 124 MultiCell.ue21.cellularNic.rlc.um rlcPacketLossTotal:vector ETV
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss, vector"
+attr unit ""
+vector 125 MultiCell.ue21.cellularNic.rlc.um rlcDelayDl:vector ETV
+attr source rlcDelayDl
+attr title "Delay at the rlc layer DL, vector"
+attr unit s
+vector 126 MultiCell.ue21.cellularNic.rlc.um sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 127 MultiCell.ue21.cellularNic.rlc.um rlcPduPacketLossDl:vector ETV
+attr source rlcPduPacketLossDl
+attr title "rlc Packet Loss, vector"
+attr unit ""
+vector 128 MultiCell.ue21.cellularNic.pdcpRrc receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 129 MultiCell.ue21.cellularNic.pdcpRrc sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 130 MultiCell.ue21.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceived
+attr title "packets received, vector(packetBytes)"
+vector 131 MultiCell.ue21.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed up, vector(count)"
+vector 132 MultiCell.ue21.app[0] voIPReceivedThroughput:vector ETV
+attr source voIPReceivedThroughput
+attr title "Throughput received at the application level, vector"
+attr unit Bps
+vector 133 MultiCell.ue21.cellularNic.mac harqErrorRate_1st_Dl:vector ETV
+attr source harqErrorRate_1st_Dl
+attr title "Harq Error Rate Dl, vector"
+attr unit ""
+vector 134 MultiCell.ue21.cellularNic.mac harqErrorRateDl:vector ETV
+attr source harqErrorRateDl
+attr title "Harq Error Rate Dl, vector"
+attr unit ""
+vector 135 MultiCell.ue21.cellularNic.mac harqTxAttemptsDl:vector ETV
+attr source harqTxAttemptsDl
+attr title "Harq Tx Attempts Dl, vector"
+attr unit ""
+vector 136 MultiCell.server.app[0] voIPGeneratedThroughput:vector ETV
+attr source voIPGeneratedThroughput
+attr title "Throughput generated by the application, vector"
+attr unit Bps
+vector 137 MultiCell.ue11.cellularNic.phy averageCqiDl:vector ETV
+attr source averageCqiDl
+attr title "Average Cqi reported in DL, vector"
+attr unit cqi
+vector 138 MultiCell.ue11.cellularNic.channelModel[0] distance:vector ETV
+attr source distance
+attr title "distance between UE and serving base station, vector"
+attr unit meters
+vector 139 MultiCell.ue11.cellularNic.channelModel[0] rcvdSinrDl:vector ETV
+attr source rcvdSinrDl
+attr title "SINR measured at packet reception, DL, vector"
+attr unit dB
+vector 140 MultiCell.ue11.cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 141 MultiCell.server.app[3] voIPGeneratedThroughput:vector ETV
+attr source voIPGeneratedThroughput
+attr title "Throughput generated by the application, vector"
+attr unit Bps
+vector 142 MultiCell.ue22.cellularNic.phy averageCqiDl:vector ETV
+attr source averageCqiDl
+attr title "Average Cqi reported in DL, vector"
+attr unit cqi
+vector 143 MultiCell.ue22.cellularNic.channelModel[0] distance:vector ETV
+attr source distance
+attr title "distance between UE and serving base station, vector"
+attr unit meters
+vector 144 MultiCell.ue22.cellularNic.channelModel[0] rcvdSinrDl:vector ETV
+attr source rcvdSinrDl
+attr title "SINR measured at packet reception, DL, vector"
+attr unit dB
+vector 145 MultiCell.ue22.cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 146 MultiCell.ue11.cellularNic.mac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+vector 147 MultiCell.ue11.cellularNic.mac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 148 MultiCell.ue11.cellularNic.rlc.um receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 149 MultiCell.ue11.cellularNic.rlc.um rlcPduThroughputDl:vector ETV
+attr source rlcPduThroughputDl
+attr title "Throughput at the rlc layer DL, vector"
+attr unit Bps
+vector 150 MultiCell.ue11.cellularNic.rlc.um rlcPduDelayDl:vector ETV
+attr source rlcPduDelayDl
+attr title "Delay at the rlc layer UL, vector"
+attr unit s
+vector 151 MultiCell.ue11.cellularNic.rlc.um rlcThroughputDl:vector ETV
+attr source rlcThroughputDl
+attr title "Throughput at the rlc layer DL, vector"
+attr unit Bps
+vector 152 MultiCell.ue11.cellularNic.rlc.um rlcPacketLossDl:vector ETV
+attr source rlcPacketLossDl
+attr title "rlc Packet Loss, vector"
+attr unit ""
+vector 153 MultiCell.ue11.cellularNic.rlc.um rlcPacketLossTotal:vector ETV
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss, vector"
+attr unit ""
+vector 154 MultiCell.ue11.cellularNic.rlc.um rlcDelayDl:vector ETV
+attr source rlcDelayDl
+attr title "Delay at the rlc layer DL, vector"
+attr unit s
+vector 155 MultiCell.ue11.cellularNic.rlc.um sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 156 MultiCell.ue11.cellularNic.rlc.um rlcPduPacketLossDl:vector ETV
+attr source rlcPduPacketLossDl
+attr title "rlc Packet Loss, vector"
+attr unit ""
+vector 157 MultiCell.ue11.cellularNic.pdcpRrc receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 158 MultiCell.ue11.cellularNic.pdcpRrc sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 159 MultiCell.ue11.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceived
+attr title "packets received, vector(packetBytes)"
+vector 160 MultiCell.ue11.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed up, vector(count)"
+vector 161 MultiCell.ue11.app[0] voIPReceivedThroughput:vector ETV
+attr source voIPReceivedThroughput
+attr title "Throughput received at the application level, vector"
+attr unit Bps
+vector 162 MultiCell.ue11.cellularNic.mac harqErrorRate_1st_Dl:vector ETV
+attr source harqErrorRate_1st_Dl
+attr title "Harq Error Rate Dl, vector"
+attr unit ""
+vector 163 MultiCell.ue11.cellularNic.mac harqErrorRateDl:vector ETV
+attr source harqErrorRateDl
+attr title "Harq Error Rate Dl, vector"
+attr unit ""
+vector 164 MultiCell.ue11.cellularNic.mac harqTxAttemptsDl:vector ETV
+attr source harqTxAttemptsDl
+attr title "Harq Tx Attempts Dl, vector"
+attr unit ""
+vector 165 MultiCell.ue22.cellularNic.mac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+vector 166 MultiCell.ue22.cellularNic.mac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 167 MultiCell.ue22.cellularNic.rlc.um receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 168 MultiCell.ue22.cellularNic.rlc.um rlcPduThroughputDl:vector ETV
+attr source rlcPduThroughputDl
+attr title "Throughput at the rlc layer DL, vector"
+attr unit Bps
+vector 169 MultiCell.ue22.cellularNic.rlc.um rlcPduDelayDl:vector ETV
+attr source rlcPduDelayDl
+attr title "Delay at the rlc layer UL, vector"
+attr unit s
+vector 170 MultiCell.ue22.cellularNic.rlc.um rlcThroughputDl:vector ETV
+attr source rlcThroughputDl
+attr title "Throughput at the rlc layer DL, vector"
+attr unit Bps
+vector 171 MultiCell.ue22.cellularNic.rlc.um rlcPacketLossDl:vector ETV
+attr source rlcPacketLossDl
+attr title "rlc Packet Loss, vector"
+attr unit ""
+vector 172 MultiCell.ue22.cellularNic.rlc.um rlcPacketLossTotal:vector ETV
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss, vector"
+attr unit ""
+vector 173 MultiCell.ue22.cellularNic.rlc.um rlcDelayDl:vector ETV
+attr source rlcDelayDl
+attr title "Delay at the rlc layer DL, vector"
+attr unit s
+vector 174 MultiCell.ue22.cellularNic.rlc.um sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 175 MultiCell.ue22.cellularNic.rlc.um rlcPduPacketLossDl:vector ETV
+attr source rlcPduPacketLossDl
+attr title "rlc Packet Loss, vector"
+attr unit ""
+vector 176 MultiCell.ue22.cellularNic.pdcpRrc receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+vector 177 MultiCell.ue22.cellularNic.pdcpRrc sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+vector 178 MultiCell.ue22.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceived
+attr title "packets received, vector(packetBytes)"
+vector 179 MultiCell.ue22.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed up, vector(count)"
+vector 180 MultiCell.ue22.app[0] voIPReceivedThroughput:vector ETV
+attr source voIPReceivedThroughput
+attr title "Throughput received at the application level, vector"
+attr unit Bps
+vector 181 MultiCell.ue22.cellularNic.mac harqErrorRate_1st_Dl:vector ETV
+attr source harqErrorRate_1st_Dl
+attr title "Harq Error Rate Dl, vector"
+attr unit ""
+vector 182 MultiCell.ue22.cellularNic.mac harqErrorRateDl:vector ETV
+attr source harqErrorRateDl
+attr title "Harq Error Rate Dl, vector"
+attr unit ""
+vector 183 MultiCell.ue22.cellularNic.mac harqTxAttemptsDl:vector ETV
+attr source harqTxAttemptsDl
+attr title "Harq Tx Attempts Dl, vector"
+attr unit ""
+vector 184 MultiCell.ue12.app[0] voIPFrameDelay:vector ETV
+attr source voIPFrameDelay
+attr title "VoIP Frame Delay, vector"
+attr unit s
+vector 185 MultiCell.ue11.cellularNic.mac harqErrorRate_2nd_Dl:vector ETV
+attr source harqErrorRate_2nd_Dl
+attr title "Harq Error Rate Dl, vector"
+attr unit ""
+vector 186 MultiCell.ue21.cellularNic.mac harqErrorRate_2nd_Dl:vector ETV
+attr source harqErrorRate_2nd_Dl
+attr title "Harq Error Rate Dl, vector"
+attr unit ""
+vector 187 MultiCell.ue21.app[0] voIPFrameDelay:vector ETV
+attr source voIPFrameDelay
+attr title "VoIP Frame Delay, vector"
+attr unit s
+vector 188 MultiCell.ue21.cellularNic.mac harqErrorRate_3rd_Dl:vector ETV
+attr source harqErrorRate_3rd_Dl
+attr title "Harq Error Rate Dl, vector"
+attr unit ""
+vector 189 MultiCell.ue11.cellularNic.mac harqErrorRate_3rd_Dl:vector ETV
+attr source harqErrorRate_3rd_Dl
+attr title "Harq Error Rate Dl, vector"
+attr unit ""
+vector 190 MultiCell.ue11.app[0] voIPFrameDelay:vector ETV
+attr source voIPFrameDelay
+attr title "VoIP Frame Delay, vector"
+attr unit s
+vector 191 MultiCell.ue22.app[0] voIPFrameDelay:vector ETV
+attr source voIPFrameDelay
+attr title "VoIP Frame Delay, vector"
+attr unit s
+0	33747 70976 0 166367 0 9.99362396769 2827 0 1 1413 1413
+1	104723 8 0 0 0 0 1 0 0 0 0
+2	104731 70976 0 166371 0 9.99362407769 2827 0 1 1413 1413
+3	175707 31394 0 166214 0 9.983382272958 1261 0 1 630 630
+4	207101 39590 0 166378 0 9.99362421649 1567 0 1 783 783
+5	246691 8 0 0 0 0 1 0 0 0 0
+6	246699 8 0 0 0 0 1 0 0 0 0
+7	246707 8 0 0 0 0 1 0 0 0 0
+8	246715 8 0 0 0 0 1 0 0 0 0
+9	246723 8 0 0 0 0 1 0 0 0 0
+10	246731 9 0 0 0 0 1 0 0 0 0
+11	246740 9 0 0 0 0 1 0 0 0 0
+12	246749 9 0 0 0 0 1 1 1 1 1
+13	246758 9 0 0 0 0 1 1 1 1 1
+14	246767 9 0 0 0 0 1 2 2 2 4
+15	246776 9 0 0 0 0 1 2 2 2 4
+16	246785 172307 24 166469 0.001 10 10000 0 0 0 0
+17	419092 172307 24 166469 0.001 10 10000 0 1 817 817
+18	591399 172307 25 166470 0.001 10 10000 0 0 0 0
+19	763706 172307 25 166470 0.001 10 10000 0 1 663 663
+20	936013 51876 40 166451 0.002 9.998 1667 39.632043641988 39.632043641988 66066.616751191 2618355.0383618
+21	987889 51752 40 166451 0.002 9.998 1667 43.30380890355 49.429244471378 81638.996523378 4002462.3358331
+22	1039641 71193 41 166468 0.002 9.999 4151 1 1 4151 4151
+23	1110834 51876 42 166453 0.002 9.998 1667 39.126052583939 39.126052583939 65223.129657426 2551923.6006655
+24	1162710 50333 42 166453 0.002 9.998 1667 40.761689354969 47.05818676394 77665.231656777 3622959.6483145
+25	1213043 51876 44 166455 0.002 9.998 1667 41.060727018581 41.060727018581 68448.231939973 2810534.1665919
+26	1264919 51876 44 166455 0.002 9.998 1667 37.719256124443 43.560652363474 71961.371111138 3110006.9610344
+27	1316795 68570 45 166458 0.002 9.998 3997 1 1 3997 3997
+28	1385365 51876 46 166457 0.002 9.998 1667 46.767345840952 46.767345840952 77961.16551687 3646036.7898911
+29	1437241 51876 46 166457 0.002 9.998 1667 38.577817384739 43.992874036437 72729.634673749 3176188.737455
+30	1489117 15371 97 166151 0.007138078413 9.981058309698 383 995.98531781856 5603.7490323938 658761.0938986 1164085717.9677
+31	1504488 38309 98 166364 0.007138078413 9.99362390769 1413 48 48 67824 3255552
+32	1542797 38310 100 166366 0.007138078413 9.99362390769 1413 68 68 96084 6533712
+33	1581107 38310 100 166366 0.007138078413 9.99362390769 1413 68 68 96084 6533712
+34	1619417 73794 100 166366 0.007138078413 9.99362390769 2826 0 1 1413 1413
+35	1693211 38310 100 166366 0.007138078413 9.99362390769 1413 68 68 96084 6533712
+36	1731521 36897 100 166366 0.007138078413 9.99362390769 1413 0 0 0 0
+37	1768418 38310 100 166366 0.007138078413 9.99362390769 1413 75 75 105975 7948125
+38	1806728 38310 102 166368 0.007138188413 9.99362401769 1413 75 75 105975 7948125
+39	1845038 38310 102 166368 0.007138188413 9.99362401769 1413 68 68 96084 6533712
+40	1883348 38310 104 166370 0.007138188413 9.99362401769 1413 68 68 96084 6533712
+41	1921658 38310 104 166370 0.007138188413 9.99362401769 1413 68 68 96084 6533712
+42	1959968 73794 104 166370 0.007138188413 9.99362401769 2826 0 1 1413 1413
+43	2033762 38310 104 166370 0.007138188413 9.99362401769 1413 68 68 96084 6533712
+44	2072072 36897 104 166370 0.007138188413 9.99362401769 1413 0 0 0 0
+45	2108969 38310 104 166370 0.007138188413 9.99362401769 1413 75 75 105975 7948125
+46	2147279 38310 106 166372 0.007138298413 9.99362412769 1413 75 75 105975 7948125
+47	2185589 38310 106 166372 0.007138298413 9.99362412769 1413 68 68 96084 6533712
+48	2223899 38310 109 166375 0.007138298413 9.99362412769 1413 84 84 118692 9970128
+49	2262209 22140 111 166377 0.007138298413 9.99362412769 783 104 104 81432 8468928
+50	2284349 22140 111 166377 0.007138298413 9.99362412769 783 104 104 81432 8468928
+51	2306489 41148 111 166377 0.007138298413 9.99362412769 1566 0 1 783 783
+52	2347637 22140 111 166377 0.007138298413 9.99362412769 783 104 104 81432 8468928
+53	2369777 20574 111 166377 0.007138298413 9.99362412769 783 0 0 0 0
+54	2390351 22140 111 166377 0.007138298413 9.99362412769 783 111 111 86913 9647343
+55	2412491 22140 113 166379 0.007138437213 9.99362426649 783 111 111 86913 9647343
+56	2434631 22140 113 166379 0.007138437213 9.99362426649 783 104 104 81432 8468928
+57	2456771 21357 115 166381 0.007138437213 9.99362426649 783 84 84 65772 5524848
+58	2478128 22032 115 166381 0.007138437213 9.99362426649 783 1 783 306936 160322904
+59	2500160 21357 118 166384 0.007138437213 9.99362426649 783 68 68 53244 3620592
+60	2521517 21357 118 166384 0.007138437213 9.99362426649 783 69 69 54027 3727863
+61	2542874 21357 119 166385 0.007138437213 9.99362426649 783 69 69 54027 3727863
+62	2564231 35594 121 166392 0.007138437213 9.994 1566 71 71 111186 7894206
+63	2599825 83730 122 166388 0.008 9.994 4607 25 26 119507 3100307
+64	2683555 13454 122 166388 0.008 9.994 783 1 1 783 783
+65	2697009 13454 124 166390 0.008 9.994 783 0 0 0 0
+66	2710463 14237 124 166390 0.008 9.994 783 71 71 55593 3947103
+67	2724700 14849 132 166398 0.008 9.994 817 73 73 59641 4353793
+68	2739549 6990 151 166197 0.009 9.983 383 13 15 5635 83095
+69	2746539 11969 151 166197 0.009 9.983 383 123.22337440599 123.22337440599 47194.552397496 5815472
+70	2758508 11969 151 166197 0.009 9.983 383 46.316355360692 47.330916180122 17794.964948214 826839.02529326
+71	2770477 6990 152 166198 0.009 9.983 383 73 73 27959 2041007
+72	2777467 12412 154 166199 0.00952167965 9.983381964158 307 172.90606012757 4200.9394844532 312079.97650685 348801293.42153
+73	2789879 17583 168 166213 0.00952189965 9.983382184158 630 104 104 65520 6814080
+74	2807462 17583 168 166213 0.00952189965 9.983382184158 630 104 104 65520 6814080
+75	2825045 32646 168 166213 0.00952189965 9.983382184158 1260 0 1 630 630
+76	2857691 17583 168 166213 0.00952189965 9.983382184158 630 104 104 65520 6814080
+77	2875274 16323 168 166213 0.00952189965 9.983382184158 630 0 0 0 0
+78	2891597 17583 168 166213 0.00952189965 9.983382184158 630 111 111 69930 7762230
+79	2909180 17583 170 166215 0.00952203845 9.983382322958 630 111 111 69930 7762230
+80	2926763 17583 170 166215 0.00952203845 9.983382322958 630 104 104 65520 6814080
+81	2944346 16953 172 166217 0.00952203845 9.983382322958 630 84 84 52920 4445280
+82	2961299 17475 172 166217 0.00952203845 9.983382322958 630 1 630 198765 83547555
+83	2978774 16953 175 166220 0.00952203845 9.983382322958 630 68 68 42840 2913120
+84	2995727 16953 175 166220 0.00952203845 9.983382322958 630 69 69 43470 2999430
+85	3012680 16953 176 166221 0.00952203845 9.983382322958 630 69 69 43470 2999430
+86	3029633 28511 178 166233 0.00952203845 9.984 1260 71 71 89460 6351660
+87	3058144 69203 180 166229 0.01 9.984 3772 25 26 98032 2547832
+88	3127347 10928 180 166229 0.01 9.984 630 1 1 630 630
+89	3138275 10928 182 166231 0.01 9.984 630 0 0 0 0
+90	3149203 11558 182 166231 0.01 9.984 630 71 71 44730 3175830
+91	3160761 12152 190 166239 0.01 9.984 663 73 73 48399 3533127
+92	3172913 6277 200 166253 0.011 9.985 340 13 15 5080 75940
+93	3179190 10697 200 166253 0.011 9.985 340 117.65202930677 117.65202930677 40001.6899643 4706280
+94	3189887 10750 200 166253 0.011 9.985 340 -1.4773788365357 39.701386449799 10874.158163068 418101.60781646
+95	3200637 6277 201 166254 0.011 9.985 340 73 73 24820 1811860
+96	3206914 6607 209 166258 0.012 9.986 383 1 1 383 383
+97	3213521 16653 209 166437 0.012 9.998 783 0.004 0.016 3.336 0.01596
+98	3230174 6990 209 166258 0.012 9.986 383 71 71 27193 1930703
+99	3237164 6990 212 166261 0.012 9.986 383 71 71 27193 1930703
+100	3244154 6990 212 166261 0.012 9.986 383 0 0 0 0
+101	3251144 8522 212 166261 0.012 9.986 383 0.004 0.004 1.532 0.006128
+102	3259666 12253 212 166261 0.012 9.986 383 1708.7264150943 5750 1128169.672053 3372400769.297
+103	3271919 6990 212 166261 0.012 9.986 383 0 0 0 0
+104	3278909 6990 212 166261 0.012 9.986 383 0 0 0 0
+105	3285899 11969 212 166261 0.012 9.986 383 0.004151948769 0.004941331502 1.720076641911 0.0077457377527323
+106	3297868 7373 212 166261 0.012 9.986 383 69 69 26427 1823463
+107	3305241 6990 212 166261 0.012 9.986 383 0 0 0 0
+108	3312231 7373 213 166262 0.012 9.986 383 69 69 26427 1823463
+109	3319604 7373 213 166262 0.012 9.986 383 68 68 26044 1770992
+110	3326977 7373 216 166265 0.012 9.986 383 48 48 18384 882432
+111	3334350 7648 216 166265 0.012 9.986 383 1 383 73536 18800704
+112	3341998 12292 217 166266 0.012 9.986 383 990.56603773585 3333.3333333333 654011.40408869 1133341993.4626
+113	3354290 6990 235 166288 0.013 9.987 383 0 0 0 0
+114	3361280 6990 235 166288 0.013 9.987 383 0 0 0 0
+115	3368270 6990 235 166288 0.013 9.987 383 1 1 383 383
+116	3375260 6285 240 166293 0.014 9.988 340 1 1 340 340
+117	3381545 14064 240 166293 0.014 9.988 630 0.004 0.016 2.718 0.013356
+118	3395609 5998 240 166293 0.014 9.988 307 71 71 21797 1547587
+119	3401607 5998 243 166296 0.014 9.988 307 71 71 21797 1547587
+120	3407605 5691 243 166296 0.014 9.988 307 0 0 0 0
+121	3413296 6900 243 166296 0.014 9.988 307 0.004 0.016 1.426 0.0081880000000001
+122	3420196 9937 243 166296 0.014 9.988 307 294.11764705882 4928.5714285714 534197.73077717 997782843.35044
+123	3430133 5691 243 166296 0.014 9.988 307 0 0 0 0
+124	3435824 5691 243 166296 0.014 9.988 307 0 0 0 0
+125	3441515 9678 243 166296 0.014 9.988 307 0.00447796155 0.016302184486 1.619489101572 0.009981646701393
+126	3451193 5998 243 166296 0.014 9.988 307 69 69 21183 1461627
+127	3457191 5691 243 166296 0.014 9.988 307 0 0 0 0
+128	3462882 5998 244 166297 0.014 9.988 307 69 69 21183 1461627
+129	3468880 5998 244 166297 0.014 9.988 307 68 68 20876 1419568
+130	3474878 5998 247 166300 0.014 9.988 307 48 48 14736 707328
+131	3480876 6197 247 166300 0.014 9.988 307 1 307 47278 9691990
+132	3487073 9953 248 166301 0.014 9.988 307 170.50298380222 2857.1428571429 309679.84392879 335318745.92747
+133	3497026 5691 269 166314 0.015 9.989 307 0 1 26 26
+134	3502717 6285 269 166314 0.015 9.989 340 0 1 33 33
+135	3509002 5691 269 166314 0.015 9.989 307 1 3 340 420
+136	3514693 16476 279 166363 0.016230369485 9.99362390769 400 1502.0277768538 2464.5156745795 714700.17120225 1293613879.3381
+137	3531169 8281 329 166409 0.018 9.995 434 14 15 6474 96606
+138	3539450 13923 329 166409 0.018 9.995 434 124.32618388739 124.32618388739 53957.563807126 6708338
+139	3553373 13923 329 166409 0.018 9.995 434 10.488345736816 57.079293329726 20459.643869161 1046550.3106336
+140	3567296 8281 330 166410 0.018 9.995 434 73 73 31682 2312786
+141	3575577 12997 332 156329 0.01867679981 9.297498645361 323 1332.1567289899 2141.6945304828 588677.8031763 1098712646.8006
+142	3588574 5909 390 156376 0.02 9.299 323 15 15 4845 72675
+143	3594483 10108 390 156376 0.02 9.299 323 126.17844506888 126.17844506888 40755.637757248 5142483
+144	3604591 10108 390 156376 0.02 9.299 323 38.960934398168 38.960934398168 12584.381810608 490299.2741646
+145	3614699 5909 391 156377 0.02 9.299 323 73 73 23579 1721267
+146	3620608 7944 394 166437 0.021 9.998 434 1 1 434 434
+147	3628552 7732 394 166437 0.021 9.998 400 71 71 28400 2016400
+148	3636284 7732 397 166440 0.021 9.998 400 71 71 28400 2016400
+149	3644016 7332 397 166440 0.021 9.998 400 0 0 0 0
+150	3651348 8914 397 166440 0.021 9.998 400 0.004 0.016 1.804 0.0098320000000001
+151	3660262 12903 397 166440 0.021 9.998 400 2588.7870390109 3449.0145672665 1227010.232031 3808608369.772
+152	3673165 7332 397 166440 0.021 9.998 400 0 0 0 0
+153	3680497 7332 397 166440 0.021 9.998 400 0 0 0 0
+154	3687829 12521 397 166440 0.021 9.998 400 0.004002430838 0.016769271715 2.023486642475 0.01207600873102
+155	3700350 7732 397 166440 0.021 9.998 400 69 69 27600 1904400
+156	3708082 7332 397 166440 0.021 9.998 400 0 0 0 0
+157	3715414 7732 398 166441 0.021 9.998 400 69 69 27600 1904400
+158	3723146 7732 398 166441 0.021 9.998 400 68 68 27200 1849600
+159	3730878 7732 401 166444 0.021 9.998 400 48 48 19200 921600
+160	3738610 8024 401 166444 0.021 9.998 400 1 400 80200 21413400
+161	3746634 12887 402 166445 0.021 9.998 400 1500.7461095715 1999.4287346472 711310.27943826 1279935600.0074
+162	3759521 7332 417 166468 0.022 9.999 400 0 1 26 26
+163	3766853 7944 417 166468 0.022 9.999 434 0 1 34 34
+164	3774797 7332 417 166468 0.022 9.999 400 1 3 434 518
+165	3782129 5872 423 156436 0.023 9.302 323 1 1 323 323
+166	3788001 6195 423 156436 0.023 9.302 323 71 71 22933 1628243
+167	3794196 6195 426 156439 0.023 9.302 323 71 71 22933 1628243
+168	3800391 5872 426 156439 0.023 9.302 323 0 0 0 0
+169	3806263 7164 426 156439 0.023 9.302 323 0.004 0.004 1.292 0.005168
+170	3813427 10362 426 156439 0.023 9.302 323 2296.7537050106 3447.7116957771 1010952.5174732 3238713073.5548
+171	3823789 5872 426 156439 0.023 9.302 323 0 0 0 0
+172	3829661 5872 426 156439 0.023 9.302 323 0 0 0 0
+173	3835533 9796 426 156439 0.023 9.302 323 0.00401874037 0.004772150962 1.391727705782 0.0060037158849919
+174	3845329 6195 426 156439 0.023 9.302 323 69 69 22287 1537803
+175	3851524 5872 426 156439 0.023 9.302 323 0 0 0 0
+176	3857396 6195 427 156440 0.023 9.302 323 69 69 22287 1537803
+177	3863591 6195 427 156440 0.023 9.302 323 68 68 21964 1493552
+178	3869786 6195 430 156443 0.023 9.302 323 48 48 15504 744192
+179	3875981 6410 430 156443 0.023 9.302 323 1 323 52326 11284974
+180	3882391 10354 431 156444 0.023 9.302 323 1331.4514231945 1998.6734468273 586059.43041926 1088414391.4488
+181	3892745 5872 447 156465 0.024 9.303 323 0 0 0 0
+182	3898617 5872 447 156465 0.024 9.303 323 0 0 0 0
+183	3904489 5872 447 156465 0.024 9.303 323 1 1 323 323
+184	3910361 12013 13642 166477 0.848 10 383 0.004152307569 0.004941690302 1.720214062311 0.007746972129037
+185	3922374 468 19124 29054 1.168 1.668 26 0 1 8 8
+186	3922842 468 19126 29056 1.168 1.668 26 0 1 7 7
+187	3923310 9277 19192 166477 1.173 10 307 0.00447832035 0.016302543286 1.619599253172 0.0099828088862947
+188	3932587 126 19205 26755 1.174 1.554 7 0 0 0 0
+189	3932713 144 19607 27161 1.194 1.574 8 0 0 0 0
+190	3932857 12605 82006 166477 4.691 10 400 0.004002789638 0.016769630515 2.023630162475 0.012077460836529
+191	3945462 9706 87634 166477 5.093 10 323 0.00401909917 0.004772509762 1.391843598182 0.0060047146303757
+
